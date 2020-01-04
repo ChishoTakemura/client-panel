@@ -1,0 +1,29 @@
+import React, { Component } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import Spinner from '../layout/Spinner';
+class ClientDetails extends Component {
+  render() {
+    const { client } = this.props;
+
+    if (client) {
+      return (
+        <div>
+          <h1>{client.firstName}</h1>
+        </div>
+      );
+    } else {
+      return <Spinner />;
+    }
+  }
+}
+
+export default compose(
+  firestoreConnect(props => [
+    { collection: 'clients', storeAs: 'client', doc: props.match.params.id }
+  ]),
+  connect(({ firestore: { ordered } }) => ({
+    client: ordered.client && ordered.client[0]
+  }))
+)(ClientDetails);
