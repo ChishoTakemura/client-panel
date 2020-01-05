@@ -68,7 +68,7 @@ class Clients extends Component {
                   <td>${parseFloat(client.balance).toFixed(2)}</td>
                   <td>
                     <Link
-                      to={`/client/&{client.id}`}
+                      to={`/client/${client.id}`}
                       className='btn btn-secondary btn-sm'
                     >
                       <i className='fas fa-arrow-circle-right'></i> Detail
@@ -92,7 +92,7 @@ Clients.propTypes = {
 };
 
 export default compose(
-  firestoreConnect([{ collection: "clients" }]),
+  firestoreConnect([{ collection: 'clients' }]),
   connect((state, props) => ({
     clients: state.firestore.ordered.clients
   }))
