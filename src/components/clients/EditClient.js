@@ -36,7 +36,7 @@ export class EditClient extends Component {
 
     //update client in firestore
     firestore
-      .update({ collection: ' clients', doc: client.id }, updClient)
+      .update({ collection: 'clients', doc: client.id }, updClient)
       .then(history.push('/'));
   };
   render() {
